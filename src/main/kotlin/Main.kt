@@ -4,6 +4,8 @@ import kotlin.jvm.JvmStatic
 import java.io.File
 
 /*
+1. Anotación @JvmStatic.
+
 La anotación @JvmStatic es específica para interoperar con Java.
 
 Kotlin tiene su propio sistema de clases y objetos, pero cuando queremos asegurarnos de que nuestro código Kotlin sea
@@ -23,6 +25,26 @@ En resumen, la anotación @JvmStatic permite que el método main sea invocado co
 la JVM (Java Virtual Machine) sin necesidad de crear una instancia del objeto Pruebasarchivos. Es importante si el
 código debe ser interoperable con Java o si estás escribiendo una aplicación Kotlin que se ejecuta en un entorno
 Java tradicional.
+
+2. Interoperabilidad Kotlin-Java.
+
+En Kotlin, al trabajar con clases de Java que siguen el patrón de diseño "getter" y "setter" para el acceso a
+propiedades, se puede acceder a estas mediante una sintaxis de propiedad más simple y directa, que es más natural en
+Kotlin. Esto es posible gracias a las convenciones de acceso a propiedades de Kotlin, que automáticamente mapean entre
+las llamadas a métodos getter y setter de Java y el acceso a propiedades en Kotlin.
+
+Cuando accedemos a f.parent en Kotlin, el compilador de Kotlin automáticamente lo traduce a una llamada al método
+getParent() de la instancia de java.io.File subyacente. De manera similar, si hubiera un método setParent(String parent)
+en la clase (lo cual no ocurre con java.io.File, pero es útil como ejemplo), podríamos asignar un valor a esa
+"propiedad" con una sintaxis como f.parent = "nuevoValor", y Kotlin traduciría eso a una llamada a setParent("nuevoValor").
+
+Este comportamiento hace que trabajar con código Java en Kotlin sea más idiomático y conciso, permitiendo que el código
+Kotlin se sienta más natural y manteniendo las ventajas de la orientación a objetos y encapsulamiento proporcionadas
+por los métodos getter y setter en Java.
+
+En resumen, la llamada a f.parent en tu código Kotlin es equivalente a una llamada a f.getParent() debido a la
+interoperabilidad de Kotlin con Java y su capacidad para trabajar con las convenciones de nombres de getter y setter
+de manera más expresiva.
 */
 
 object PruebasArchivos {
@@ -53,14 +75,3 @@ object PruebasArchivos {
 fun main() {
     println("Hello World!")
 }
-
-/*
-En Kotlin, cuando tenemos múltiples funciones main en nuestro proyecto, el punto de entrada del programa depende de
-cómo lo ejecutemos. Esto se debe a que cada función main puede servir como un punto de entrada potencial para nuestra
-aplicación.
-
-En el caso de tener múltiples puntos de entrada, necesitamos especificar cuál de ellos deseamos usar al momento de
-ejecutar nuestro programa.
-
-
-*/
