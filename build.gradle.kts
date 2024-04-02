@@ -19,3 +19,10 @@ tasks.test {
 kotlin {
     jvmToolchain(18)
 }
+
+tasks.jar {
+    archiveFileName.set("EjemploFicheros.jar")
+    manifest {
+        attributes("Main-Class" to "org.ejemploficheros.MainKt")
+    }
+}
